@@ -27,9 +27,9 @@ num_relationships = st.slider('Number of relationships', 1, 10, 1)
 if num_relationships > 0 and num_datasets > 1:
     for i in range(num_relationships):
         st.subheader(f'Relationship {i+1}')
-        from_dataset = st.selectbox('From', range(1, num_datasets+1))
-        to_dataset = st.selectbox('To', range(1, num_datasets+1))
-        foreign_key = st.selectbox('Foreign Key', tables[to_dataset-1].columns)
+        from_dataset = st.selectbox('From', range(1, num_datasets+1), key=(i+1)*10)
+        to_dataset = st.selectbox('To', range(1, num_datasets+1), key=(i+1)*100)
+        foreign_key = st.selectbox('Foreign Key', tables[to_dataset-1].columns, key=(i+1)*1000)
         relationships.append((from_dataset, to_dataset, foreign_key))
 
 for rel in relationships:
